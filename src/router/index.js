@@ -6,6 +6,7 @@ import Login from '@/components/Login'
 import Write_blog from '@/components/Write_blog'
 import Blog_list_page from '@/components/Blog_list_page'
 import Blog_content_page from '@/components/Blog_content_page'
+import User_detail from '@/components/User_detail'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/blog_content_page',
       name: 'Blog_content_page',
       component: Blog_content_page
+    },
+    {
+      path: '/user_detail',
+      name: 'User_detail',
+      component: User_detail
     }
   ]
 })

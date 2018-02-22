@@ -1,19 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="../src/assets/js/jquery-3.2.1.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="./test.js"></script>
-</head>
-<body>
-    
-    <div class="container">
-        
+<template>
+  <div id="user_detail">
         <table class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
@@ -48,8 +34,18 @@
                 </tr>
             </tbody>
         </table>
-        
-    </div>
-    
-</body>
-</html>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'User_datail'
+}
+</script>
+
+<style scoped>
+    #user_detail {
+        text-align: left;
+    }
+</style>
+

@@ -33,7 +33,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户信息 <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">个人资料</a></li>
+                                <li><router-link to="/user_detail">个人资料</router-link></li>
                                 <li><a href="#">退出登录</a></li>                 
                             </ul>
                         </li>
