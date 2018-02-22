@@ -28,5 +28,7 @@ export default {
 
 
 <style scoped>
-
+  #write_blog {
+    text-align: left;
+  }
 </style>
