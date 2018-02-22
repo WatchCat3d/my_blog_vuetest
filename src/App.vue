@@ -11,7 +11,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">首页</a>
+                    <router-link class="navbar-brand" to="/">首页</router-link>
                 </div>
             
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -41,9 +41,9 @@
                 </div><!-- /.navbar-collapse -->
             </nav>
       </div>
-
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+      <div id="container" class="container">
+        <router-view></router-view>
+      </div>
   </div>
 </template>
 
