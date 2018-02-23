@@ -99,7 +99,16 @@ export default {
               email: this.email
           }
           this.$http.post('./regist', post).then(function (res) {
-              alert(res.data);
+              if (res.data == "success") {
+                alert("注册成功,请登录");
+                document.location = "http://localhost:3000/#/login";
+              }
+              else if (res.data == "exist_username") {
+                alert("用户名重复");
+              }
+              else if (res.data == "exist_email") {
+                alert("此邮箱已被注册");
+              }
           })
       }
   },
