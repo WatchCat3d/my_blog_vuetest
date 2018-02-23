@@ -1,26 +1,26 @@
 <template>
     <div id="regist_form">
-        <form action="" method="POST" role="form">
+        <form action="./regist" method="POST" role="form">
             <legend><h1>注册</h1></legend>
 
             <div class="form-group has-feedback">
                 <label for="">用户名</label>
-                <input type="text" class="form-control" id="username" v-model="username" v-on:change="username_verify" maxlength="18" autocomplete="off" placeholder="6~18位英文字母、数字或下划线,开头只能是字母或下划线">
+                <input type="text" class="form-control" name="username" id="username" v-model="username" v-on:change="username_verify" maxlength="18" autocomplete="off" placeholder="6~18位英文字母、数字或下划线,开头只能是字母或下划线">
                 <span class="glyphicon glyphicon-ok form-control-feedback" v-show="istrue_username"></span>
             </div>
             <div class="form-group has-feedback">
                 <label for="">密码</label>
-                <input type="password" class="form-control" id="password" v-model="password" v-on:change="password_verify" autocomplete="off" placeholder="密码至少6位">
+                <input type="password" class="form-control" name="password" id="password" v-model="password" v-on:change="password_verify" autocomplete="off" placeholder="密码至少6位">
                 <span class="glyphicon glyphicon-ok form-control-feedback" v-show="istrue_password"></span>
             </div>
             <div class="form-group has-feedback">
                 <label for="">确认密码</label>
-                <input type="password" class="form-control" id="verify_password" v-model="verify_password" v-on:change="verify_password_verify" autocomplete="off" placeholder="请再次确认密码">
+                <input type="password" class="form-control" name="verify_password" id="verify_password" v-model="verify_password" v-on:change="verify_password_verify" autocomplete="off" placeholder="请再次确认密码">
                 <span class="glyphicon glyphicon-ok form-control-feedback" v-show="issame_password"></span>
             </div>
             <div class="form-group has-feedback">
                 <label for="">邮箱</label>
-                <input type="email" class="form-control" id="email" v-model="email" v-on:change="email_verify" placeholder="正确的邮箱地址">
+                <input type="email" class="form-control" name="email" id="email" v-model="email" v-on:change="email_verify" placeholder="正确的邮箱地址">
                 <span class="glyphicon glyphicon-ok form-control-feedback" v-show="istrue_email"></span>
             </div>  
             
