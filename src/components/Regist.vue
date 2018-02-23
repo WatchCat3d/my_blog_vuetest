@@ -46,9 +46,6 @@ export default {
       }
   },
   methods: {
-      alert: function() {
-          alert(1);
-      },
       username_verify: function () {
           var pattem = /^[a-zA-Z_][a-zA-Z0-9_]{5,17}/;
           var pattem2 = /[^a-zA-Z_0-9]/;
