@@ -24,7 +24,7 @@
                 <span class="glyphicon glyphicon-ok form-control-feedback" v-show="istrue_email"></span>
             </div>  
             
-            <button type="submit" class="btn btn-primary" v-bind:disabled="isAllTrue">注册</button>
+            <button type="submit" class="btn btn-primary" v-on:click.prevent="submit" v-bind:disabled="isAllTrue">注册</button>
             <button type="reset" class="btn btn-warning" v-on:click.prevent="reset">重置</button>
         </form>
     </div>
@@ -90,6 +90,17 @@ export default {
           this.istrue_password= false;
           this.issame_password= false,
           this.istrue_email= false
+      },
+      submit: function () {
+          var post = {
+              username: this.username,
+              password: this.password,
+              verify_password: this.verify_password,
+              email: this.email
+          }
+          this.$http.post('./regist', post).then(function (res) {
+              alert(res.data);
+          })
       }
   },
   computed: {
