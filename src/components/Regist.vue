@@ -3,32 +3,108 @@
         <form action="" method="POST" role="form">
             <legend><h1>注册</h1></legend>
 
-            <div class="form-group">
+            <div class="form-group has-feedback">
                 <label for="">用户名</label>
-                <input type="text" class="form-control" id="username" maxlength="18" autocomplete="off" placeholder="6~18位英文字母、数字或下划线">
+                <input type="text" class="form-control" id="username" v-model="username" v-on:change="username_verify" maxlength="18" autocomplete="off" placeholder="6~18位英文字母、数字或下划线,开头只能是字母或下划线">
+                <span class="glyphicon glyphicon-ok form-control-feedback" v-show="istrue_username"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group has-feedback">
                 <label for="">密码</label>
-                <input type="password" class="form-control" id="password" autocomplete="off" placeholder="至少6位英文字母或数字">
+                <input type="password" class="form-control" id="password" v-model="password" v-on:change="password_verify" autocomplete="off" placeholder="密码至少6位">
+                <span class="glyphicon glyphicon-ok form-control-feedback" v-show="istrue_password"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group has-feedback">
                 <label for="">确认密码</label>
-                <input type="password" class="form-control" id="verify_password" autocomplete="off" placeholder="至少6位英文字母或数字">
+                <input type="password" class="form-control" id="verify_password" v-model="verify_password" v-on:change="verify_password_verify" autocomplete="off" placeholder="请再次确认密码">
+                <span class="glyphicon glyphicon-ok form-control-feedback" v-show="issame_password"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group has-feedback">
                 <label for="">邮箱</label>
-                <input type="email" class="form-control" id="email" placeholder="正确的邮箱地址">
+                <input type="email" class="form-control" id="email" v-model="email" v-on:change="email_verify" placeholder="正确的邮箱地址">
+                <span class="glyphicon glyphicon-ok form-control-feedback" v-show="istrue_email"></span>
             </div>  
             
-            <button type="submit" class="btn btn-primary">注册</button>
-            <button type="reset" class="btn btn-warning">重置</button>
+            <button type="submit" class="btn btn-primary" v-bind:disabled="isAllTrue">注册</button>
+            <button type="reset" class="btn btn-warning" v-on:click.prevent="reset">重置</button>
         </form>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'Regist'
+  name: 'Regist',
+  data: function () {
+      return {
+          username: "",
+          password: "",
+          verify_password: "",
+          email: "",
+          istrue_username: false,
+          istrue_password: false,
+          issame_password: false,
+          istrue_email: false
+      }
+  },
+  methods: {
+      alert: function() {
+          alert(1);
+      },
+      username_verify: function () {
+          var pattem = /^[a-zA-Z_][a-zA-Z0-9_]{5,17}/;
+          var pattem2 = /[^a-zA-Z_0-9]/;
+          if(pattem.test(this.username) && (!pattem2.test(this.username))) {
+              this.istrue_username = true;
+          }
+          else {
+              this.istrue_username = false;
+          }
+      },
+      password_verify: function () {
+          if (this.password.length >= 6) {
+              this.istrue_password = true;
+          }
+          else {
+              this.istrue_password = false;
+          }
+      },
+      verify_password_verify: function () {
+          if ((this.verify_password.length >= 6) && (this.password == this.verify_password)) {
+              this.issame_password = true;
+          }
+          else {
+              this.issame_password = false;
+          }
+      },
+      email_verify: function () {
+          var pattem = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/;
+          if (pattem.test(this.email)) {
+              this.istrue_email = true;
+          }
+          else {
+              this.istrue_email = false;
+          }
+      },
+      reset: function () {
+          this.username= "";
+          this.password= "";
+          this.verify_password= "";
+          this.email= "";
+          this.istrue_username= false;
+          this.istrue_password= false;
+          this.issame_password= false,
+          this.istrue_email= false
+      }
+  },
+  computed: {
+      isAllTrue: function () {
+          if (this.istrue_email && this.istrue_username && this.istrue_password && this.issame_password) {
+              return false;
+          }
+          else {
+              return true;
+          }
+      }
+  }
 }
 </script>
 
