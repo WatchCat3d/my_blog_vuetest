@@ -27,14 +27,14 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><router-link to="/write_blog">写博客</router-link></li>
-                        <li><router-link to="/login">登陆</router-link></li>
-                        <li><router-link to="/regist">注册</router-link></li>
+                        <li v-show="is_logout"><router-link to="/login">登陆</router-link></li>
+                        <li v-show="is_logout"><router-link to="/regist">注册</router-link></li>
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户信息 <b class="caret"></b></a>
+                        <li class="dropdown" v-show="is_login">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{username}}<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><router-link to="/user_detail">个人资料</router-link></li>
-                                <li><a href="#">退出登录</a></li>                 
+                                <li><a href="#" v-on:click.prevent="logout">退出登录</a></li>                 
                             </ul>
                         </li>
                     </ul>
@@ -52,9 +52,45 @@ import './assets/js/jquery-3.2.1'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 
-
 export default {
-  name: 'App'
+  name: 'App',
+  data: function () {
+      return {
+          cookie: document.cookie
+      }
+  },
+  methods: {
+      logout: function () {
+          document.cookie =  "username=false";
+          this.cookie = "username=false";
+      }
+  },
+  computed: {
+      is_login: function () {
+          if (this.cookie != "username=false") {
+              return true;
+          }
+          else {
+              return false;
+          }
+      },
+      is_logout: function () {
+          if (this.cookie == "username=false") {
+              return true;
+          }
+          else {
+              return false;
+          }
+      },
+      username: function () {
+          if (this.cookie == "username=false") {
+              return "";
+          }
+          else {
+              return this.cookie.replace(/username=/, "");
+          }
+      }
+  }
 }
 </script>
 

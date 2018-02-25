@@ -5,7 +5,7 @@
 
             <div class="form-group has-feedback">
                 <label for="">用户名</label>
-                <input type="text" class="form-control" name="username" id="username" v-model="username" v-on:change="username_verify" maxlength="18" autocomplete="off" placeholder="6~18位英文字母、数字或下划线,开头只能是字母或下划线">
+                <input type="text" class="form-control" name="username" id="username" v-model="username" v-on:change="username_verify" maxlength="18" placeholder="6~18位英文字母、数字或下划线,开头只能是字母或下划线">
                 <span class="glyphicon glyphicon-ok form-control-feedback" v-show="istrue_username"></span>
             </div>
             <div class="form-group has-feedback">
