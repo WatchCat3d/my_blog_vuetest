@@ -23,7 +23,13 @@
 <script>
 
 export default {
-  name: 'Write_blog'
+  name: 'Write_blog',
+  created: function () {
+    if (document.cookie == "username=false") {
+      alert("请先登录");
+      document.location = "http://localhost:3000/#/login";
+    }
+  }
 }
 </script>
 
