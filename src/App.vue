@@ -63,6 +63,7 @@ export default {
       logout: function () {
           document.cookie =  "username=false";
           this.cookie = "username=false";
+          document.location = "http://localhost:3000";
       }
   },
   computed: {

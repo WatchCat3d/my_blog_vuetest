@@ -8,7 +8,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>用户名</td>
+                    <td>{{username}}</td>
                 </tr>
             </tbody>
 
@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>邮箱</td>
+                    <td>{{email}}</td>
                 </tr>
             </tbody>
 
@@ -30,7 +30,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>注册时间</td>
+                    <td>{{regist_date}}</td>
                 </tr>
             </tbody>
         </table>
@@ -39,7 +39,22 @@
 
 <script>
 export default {
-  name: 'User_datail'
+  name: 'User_datail',
+  data: function () {
+      return {
+          username: "",
+          email: "",
+          regist_date: ""
+      }
+  },
+  created: function () {
+      var post = {username: document.cookie.replace(/username=/, "")};
+      this.$http.post('./user_detail', post).then(function (res) {
+          this.username = res.data[0].username;
+          this.email = res.data[0].email;
+          this.regist_date = res.data[0].regist_date;
+      })
+  }
 }
 </script>
 
