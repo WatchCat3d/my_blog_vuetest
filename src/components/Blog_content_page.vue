@@ -12,7 +12,10 @@
 
 <script>
 export default {
-  name: 'Blog_content_page'
+  name: 'Blog_content_page',
+  created: function () {
+      alert(document.URL);
+  }
 }
 </script>
 

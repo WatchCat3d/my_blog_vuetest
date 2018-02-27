@@ -38,7 +38,7 @@ export default new Router({
       component: Blog_list_page
     },
     {
-      path: '/blog_content_page',
+      path: '/blog_content_page/:username/:blog_date',
       name: 'Blog_content_page',
       component: Blog_content_page
     },

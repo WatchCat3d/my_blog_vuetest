@@ -1,20 +1,20 @@
 <template>
   <div id="write_blog">
-    <form action="" method="POST" role="form">
+    <form action="./write_blog" method="POST" role="form">
         <legend><h1>写博客</h1></legend>
 
         <div class="form-group">
             <label for="">标题</label>
-            <input type="text" class="form-control" id="title" placeholder="博客标题">
+            <input name="title" v-model="title" type="text" class="form-control" id="title" autocomplete="off" placeholder="博客标题">
         </div>
         
         <div class="input-group">
             <label for="">内容</label>
-            <textarea name="content" id="content" class="form-control" cols="153" rows="30" required="required"></textarea>
+            <textarea name="content" v-model="content" id="content" class="form-control" cols="153" rows="30" autocomplete="off" required="required"></textarea>
         </div>
         
 
-        <button type="submit" class="btn btn-primary">提交</button>
+        <button type="submit" v-bind:disabled="is_submit" v-on:click.prevent="submit" class="btn btn-primary">提交</button>
     </form> 
   </div>
 </template>
@@ -24,10 +24,39 @@
 
 export default {
   name: 'Write_blog',
-  created: function () {
+  data: function () {
+    return {
+      title: "",
+      content: ""
+    }
+  },
+  created: function () {  //进入该路由时，会先执行created里面的函数
     if (document.cookie == "username=false") {
       alert("请先登录");
       document.location = "http://localhost:3000/#/login";
+    }
+  },
+  methods: {
+    submit: function () {
+      var post = {
+        title: this.title,
+        content: this.content,
+        writer: document.cookie.replace(/username=/, ""),
+        blog_date: (new Date()).getTime()
+      }
+      this.$http.post('./write_blog', post).then(function (res) {
+        document.location = "http://localhost:3000/#/blog_list_page";
+      })
+    }
+  },
+  computed: {
+    is_submit: function () {
+      if (this.title != "" && this.content != "") {
+        return false;
+      }
+      else {
+        return true;
+      }
     }
   }
 }

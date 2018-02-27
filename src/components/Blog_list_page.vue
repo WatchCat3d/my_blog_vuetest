@@ -1,12 +1,12 @@
 <template>
     <div id="blog_list">
         <div class="list-group">
-            <router-link to="/blog_content_page" class="list-group-item" v-for="item in blog" :key="item.id">
+            <router-link v-bind:to="{path: '/blog_content_page/' + blog[index].writer + '/' + blog[index].blog_date}" class="list-group-item" v-for="(item, index) in blog" :key="item.id">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><strong>文章标题: {{item.title}}</strong></h3>
+                    <h3 class="panel-title"><strong>文章标题 :{{item.title}}</strong></h3>
                 </div>
                 <div class="panel-body">
-                    作者: {{item.writer}} 日期: {{item.date}}
+                    作者: {{item.writer}} 日期: {{item.blog_date}}
                 </div>
             </router-link>
         </div>  
@@ -18,21 +18,15 @@ export default {
     name: 'Blog_list_page',
     data: function () {
         return {
-            blog: [
-                {
-                    writer: "watchcat",
-                    date: (new Date()).toLocaleDateString(),
-                    title: "my blog",
-                    content: "111111111"
-                },
-                {
-                    writer: "watchcatsssss",
-                    date: (new Date()).toLocaleDateString(),
-                    title: "ssss blog",
-                    content: "111111111"
-                }
-            ]
+            blog: []
         }
+    },
+    created: function () {
+        var post = {};
+        this.$http.post('./blog_list',post).then(function (res) {
+            this.blog = res.data;
+            
+        })
     }
 }
 </script>
