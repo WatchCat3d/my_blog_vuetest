@@ -19,11 +19,11 @@
                     <ul class="nav navbar-nav">
                         <li><router-link to="/blog_list_page">博客</router-link></li>
                     </ul>
-                    <form class="navbar-form navbar-left" role="search">
+                    <form action="./search" method="POST" class="navbar-form navbar-left" role="search">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="输入关键字搜索博客">
+                            <input type="text" v-model="search" class="form-control" placeholder="输入标题关键字搜索博客">
                         </div>
-                        <button type="submit" class="btn btn-default">搜索</button>
+                        <button type="submit" v-on:click.prevent="search_submit" v-bind:disabled="search_disabled" class="btn btn-default">搜索</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><router-link to="/write_blog">写博客</router-link></li>
@@ -56,7 +56,8 @@ export default {
   name: 'App',
   data: function () {
       return {
-          cookie: document.cookie
+          cookie: document.cookie,
+          search: ""
       }
   },
   methods: {
@@ -64,6 +65,13 @@ export default {
           document.cookie =  "username=false";
           this.cookie = "username=false";
           document.location = "http://localhost:3000";
+      },
+      search_submit: function () {
+          var post = {
+              title_words: this.search 
+          }
+
+
       }
   },
   computed: {
@@ -90,6 +98,12 @@ export default {
           else {
               return this.cookie.replace(/username=/, "");
           }
+      },
+      search_disabled: function () {
+          if (this.search == "") {
+              return true;
+          }
+          else return false;
       }
   }
 }
