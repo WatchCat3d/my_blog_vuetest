@@ -9,6 +9,9 @@
                     作者: {{item.writer}} 日期: {{item.blog_date | standard_date}}
                 </div>
             </router-link>
+            <div class="list-group-item" id="show_empty" v-show="empty">
+                <h3>暂时没有相关内容</h3>
+            </div>
         </div>  
     </div>
 </template>
@@ -32,6 +35,13 @@ export default {
         standard_date: function (value) {
             return (new Date(parseInt(value))).toLocaleDateString();
         }
+    },
+    computed: {
+        empty: function () {
+            if (this.blog.length == 0)
+                return true;
+            else return false;
+        }
     }
 }
 </script>
@@ -39,5 +49,9 @@ export default {
 <style scoped>
     #blog_list {
         text-align: left;
+    }
+    #show_empty {
+        text-align: center;
+        background-color:beige;
     }
 </style>
