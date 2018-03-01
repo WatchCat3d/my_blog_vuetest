@@ -59,7 +59,8 @@ export default {
                   comments_date: (new Date()).toLocaleDateString()
               }
               this.$http.post("./write_comments", post).then(function (res) {
-                  window.location.reload();
+                this.gain_comments = res.data.comments;
+                this.gain_comments = this.gain_comments.reverse();
               })
           }
       }
