@@ -64,7 +64,7 @@ export default {
       logout: function () {
           document.cookie =  "username=false";
           this.cookie = "username=false";
-          document.location = "http://localhost:3000";
+          document.location = "http://localhost:3000/#/";
       },
       search_submit: function () {
           var post = {
