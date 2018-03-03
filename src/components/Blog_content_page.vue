@@ -25,7 +25,7 @@
     <br>
     <br>
     <legend style="text-align:left;">全部评论</legend>
-    <div class="list-group" style="text-align:left;">
+    <div id="comments_list" class="list-group" style="text-align:left;">
         <li style="list-style: none;" v-for="item in gain_comments" :key="item.id">
             <p style="font-size: 12pt;word-break:break-word;">{{item.content}}</p>
             <p >——{{item.writer}} {{item.date}}</p>
@@ -62,6 +62,8 @@ export default {
                 this.gain_comments = res.data.comments;
                 this.gain_comments = this.gain_comments.reverse();
               })
+              this.comments = "";
+              window.location.hash = "comments_list";
           }
       }
   },
