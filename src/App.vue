@@ -57,14 +57,17 @@ export default {
   data: function () {
       return {
           cookie: document.cookie,
-          search: ""
+          search: "",
+          username: "",
+          is_login: false,
+          is_logout: true
       }
   },
   methods: {
       logout: function () {
           document.cookie =  "username=false";
           this.cookie = "username=false";
-          document.location = "http://localhost:3000/#/";
+          document.location = "http://localhost:3000/#/blog_list_page";
       },
       search_submit: function () {
           var post = {
@@ -75,36 +78,39 @@ export default {
       }
   },
   computed: {
-      is_login: function () {
-          if (this.cookie != "username=false") {
-              return true;
-          }
-          else {
-              return false;
-          }
-      },
-      is_logout: function () {
-          if (this.cookie == "username=false") {
-              return true;
-          }
-          else {
-              return false;
-          }
-      },
-      username: function () {
-          if (this.cookie == "username=false") {
-              return "";
-          }
-          else {
-              return this.cookie.replace(/username=/, "");
-          }
-      },
       search_disabled: function () {
           if (this.search == "") {
               return true;
           }
           else return false;
       }
+  },
+  created: function () {
+    this.cookie = document.cookie;
+    if (document.cookie == "username=false") {
+        this.username = "";
+        this.is_login = false;
+        this.is_logout = true;
+    }
+    else {
+        this.username = document.cookie.replace(/username=/, "");
+        this.is_login = true;
+        this.is_logout = false;
+    }
+  },
+  watch: {
+    $route (to, from) {
+        if (document.cookie == "username=false") {
+            this.username = "";
+            this.is_login = false;
+            this.is_logout = true;
+        }
+        else {
+            this.username = document.cookie.replace(/username=/, "");
+            this.is_login = true;
+            this.is_logout = false;
+        }
+    }
   }
 }
 </script>
