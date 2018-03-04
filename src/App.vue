@@ -21,7 +21,7 @@
                     </ul>
                     <form action="./search" method="POST" class="navbar-form navbar-left" role="search">
                         <div class="form-group">
-                            <input type="text" v-model="search" class="form-control" placeholder="输入标题关键字搜索博客">
+                            <input type="text" v-model="search_keywords" class="form-control" placeholder="输入标题关键字搜索博客">
                         </div>
                         <button type="submit" v-on:click.prevent="search_submit" v-bind:disabled="search_disabled" class="btn btn-default">搜索</button>
                     </form>
@@ -57,7 +57,7 @@ export default {
   data: function () {
       return {
           cookie: document.cookie,
-          search: "",
+          search_keywords: "",
           username: "",
           is_login: false,
           is_logout: true
@@ -67,11 +67,14 @@ export default {
       logout: function () {
           document.cookie =  "username=false";
           this.cookie = "username=false";
+          this.username= "";
+          this.is_login= false;
+          this.is_logout= true;
           document.location = "http://localhost:3000/#/blog_list_page";
       },
       search_submit: function () {
           var post = {
-              title_words: this.search 
+              title_words: this.search_keywords
           }
 
 
@@ -79,7 +82,7 @@ export default {
   },
   computed: {
       search_disabled: function () {
-          if (this.search == "") {
+          if (this.search_keywords == "") {
               return true;
           }
           else return false;
@@ -87,7 +90,7 @@ export default {
   },
   created: function () {
     this.cookie = document.cookie;
-    if (document.cookie == "username=false") {
+    if (document.cookie == "username=false" || document.cookie=="") {
         this.username = "";
         this.is_login = false;
         this.is_logout = true;
@@ -100,15 +103,17 @@ export default {
   },
   watch: {
     $route (to, from) {
-        if (document.cookie == "username=false") {
-            this.username = "";
-            this.is_login = false;
-            this.is_logout = true;
-        }
-        else {
-            this.username = document.cookie.replace(/username=/, "");
-            this.is_login = true;
-            this.is_logout = false;
+        if (from.name == "Login" && to.name == "Blog_list_page") {
+            if (document.cookie == "username=false") {
+                this.username = "";
+                this.is_login = false;
+                this.is_logout = true;
+            }
+            else {
+                this.username = document.cookie.replace(/username=/, "");
+                this.is_login = true;
+                this.is_logout = false;
+            }
         }
     }
   }
