@@ -31,7 +31,7 @@ export default {
     }
   },
   created: function () {  //进入该路由时，会先执行created里面的函数
-    if (document.cookie == "username=false") {
+    if (document.cookie == "username=false" || document.cookie == "") {
       alert("请先登录");
       document.location = "http://localhost:3000/#/login";
     }

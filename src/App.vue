@@ -73,11 +73,10 @@ export default {
           document.location = "http://localhost:3000/#/blog_list_page";
       },
       search_submit: function () {
-          var post = {
-              title_words: this.search_keywords
-          }
-
-
+          var temp = this.search_keywords;
+          this.search_keywords = "";
+          document.location = "http://localhost:3000/#/default"
+          document.location = "http://localhost:3000/#/search_blog/" + temp;
       }
   },
   computed: {
@@ -104,7 +103,7 @@ export default {
   watch: {
     $route (to, from) {
         if (from.name == "Login" && to.name == "Blog_list_page") {
-            if (document.cookie == "username=false") {
+            if (document.cookie == "username=false" || document.cookie == "") {
                 this.username = "";
                 this.is_login = false;
                 this.is_logout = true;

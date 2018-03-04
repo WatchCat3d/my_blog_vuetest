@@ -7,6 +7,7 @@ import Write_blog from '@/components/Write_blog'
 import Blog_list_page from '@/components/Blog_list_page'
 import Blog_content_page from '@/components/Blog_content_page'
 import User_detail from '@/components/User_detail'
+import Search_blog from '@/components/Search_blog'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/user_detail',
       name: 'User_detail',
       component: User_detail
+    },
+    {
+      path: '/search_blog/:search_keywords',
+      name: 'Search_blog',
+      component: Search_blog
     }
   ]
 })
