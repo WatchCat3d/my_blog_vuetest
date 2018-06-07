@@ -30,7 +30,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{regist_date}}</td>
+                    <td>{{regist_date | standard_date}}</td>
                 </tr>
             </tbody>
         </table>
@@ -45,6 +45,11 @@ export default {
           username: "",
           email: "",
           regist_date: ""
+      }
+  },
+  filters: {
+      standard_date: function (value) {
+          return (new Date(parseInt(value))).toLocaleDateString();
       }
   },
   created: function () {

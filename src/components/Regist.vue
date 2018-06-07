@@ -97,7 +97,7 @@ export default {
               password: this.password,
               verify_password: this.verify_password,
               email: this.email,
-              regist_date: (new Date()).toLocaleDateString()
+              regist_date: (new Date()).getTime()
           }
           this.$http.post('./regist', post).then(function (res) {
               if (res.data == "success") {
