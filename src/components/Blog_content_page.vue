@@ -67,12 +67,14 @@ export default {
           }
       }
   },
-  created: function () {  //http://localhost:3000/#/blog_content_page/
-      var pattem = document.URL.replace(/http:\/\/localhost:3000\/#\/blog_content_page\//, "");
-      pattem = pattem.split('/');
+  created: function () {  
+      //http://localhost:3000/#/blog_content_page/
+      //var pattem = document.URL.replace(/http:\/\/localhost:3000\/#\/blog_content_page\//, "");
+      var pattem = document.URL.split('/');
+      pattem = pattem.reverse();
       var post = {
-          writer: pattem[0],
-          blog_date: pattem[1]
+          writer: pattem[1],
+          blog_date: pattem[0]
       }
       this.$http.post('./blog_content', post).then(function (res) {
           this.blog = res.data;

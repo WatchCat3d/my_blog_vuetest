@@ -33,7 +33,8 @@ export default {
   created: function () {  //进入该路由时，会先执行created里面的函数
     if (document.cookie == "username=false" || document.cookie == "") {
       alert("请先登录");
-      document.location = "http://localhost:3000/#/login";
+      //document.location = "http://localhost:3000/#/login";  
+      this.$router.push("/login");
     }
   },
   methods: {
@@ -45,7 +46,8 @@ export default {
         blog_date: (new Date()).getTime()
       }
       this.$http.post('./write_blog', post).then(function (res) {
-        document.location = "http://localhost:3000/#/blog_list_page";
+        //document.location = "http://localhost:3000/#/blog_list_page";
+        this.$router.push("/blog_list_page");
       })
     }
   },

@@ -102,7 +102,8 @@ export default {
           this.$http.post('./regist', post).then(function (res) {
               if (res.data == "success") {
                 alert("注册成功,请登录");
-                document.location = "http://localhost:3000/#/login";
+                //document.location = "http://localhost:3000/#/login";
+                this.$router.push("/login");
               }
               else if (res.data == "exist_username") {
                 alert("用户名重复");

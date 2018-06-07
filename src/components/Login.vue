@@ -41,7 +41,8 @@ export default {
                   alert("密码错误");
               }
               else if (res.data == 'success'){
-                  document.location = "http://localhost:3000/#/blog_list_page";
+                  //document.location = "http://localhost:3000/#/blog_list_page";
+                  this.$router.push("/blog_list_page");
               }
           })
           

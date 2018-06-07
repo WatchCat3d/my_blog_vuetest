@@ -70,13 +70,15 @@ export default {
           this.username= "";
           this.is_login= false;
           this.is_logout= true;
-          document.location = "http://localhost:3000/#/blog_list_page";
+          //document.location = "http://localhost:3000/#/blog_list_page";
+          this.$router.push("/blog_list_page");
       },
       search_submit: function () {
           var temp = this.search_keywords;
           this.search_keywords = "";
-          document.location = "http://localhost:3000/#/default"
-          document.location = "http://localhost:3000/#/search_blog/" + temp;
+          //document.location = "http://localhost:3000/#/default"
+          //document.location = "http://localhost:3000/#/search_blog/" + temp;
+          this.$router.push("/search_blog/" + temp);
       }
   },
   computed: {
