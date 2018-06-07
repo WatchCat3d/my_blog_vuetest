@@ -28,7 +28,7 @@
     <div id="comments_list" class="list-group" style="text-align:left;">
         <li style="list-style: none;" v-for="item in gain_comments" :key="item.id">
             <p style="font-size: 12pt;word-break:break-word;">{{item.content}}</p>
-            <p >——{{item.writer}} {{item.date}}</p>
+            <p >——{{item.writer}} {{item.date | standard_date}}</p>
             <hr>
         </li>
     </div>
@@ -48,22 +48,24 @@ export default {
   },
   methods: {
       comments_submit: function () {
-          if (document.cookie == "username=false")
+          if (document.cookie == "username=false" || document.cookie == "")
             alert("请先登录");
           else {
               var post = {
-                  writer: this.blog.writer,
+                  blog_writer: this.blog.writer,
                   blog_date: this.blog.blog_date,
-                  comments: this.comments,
-                  comments_writer: document.cookie.replace(/username=/, ""),
-                  comments_date: (new Date()).toLocaleDateString()
+                  content: this.comments,
+                  writer: document.cookie.replace(/username=/, ""),
+                  date: (new Date()).getTime()
               }
               this.$http.post("./write_comments", post).then(function (res) {
-                this.gain_comments = res.data.comments;
-                this.gain_comments = this.gain_comments.reverse();
+                  this.gain_comments = this.gain_comments.reverse();
+                  this.gain_comments.push(res.data);
+                  this.gain_comments = this.gain_comments.reverse();
               })
               this.comments = "";
-              window.location.hash = "comments_list";
+
+              //移动到评论的锚点
           }
       }
   },
@@ -81,9 +83,19 @@ export default {
           this.content = res.data.content;
           this.content = this.content.replace(/\n|\r\n/g,"<br/>");
           this.content = this.content.replace(/ /g, "&nbsp;");
-          this.gain_comments = res.data.comments;
+          //this.gain_comments = res.data.comments;
+          //this.gain_comments = this.gain_comments.reverse();
+      })
+
+      var post2 = {
+          blog_writer: pattem[1],
+          blog_date: pattem[0]
+      }
+      this.$http.post('./blog_comment', post2).then(function (res) {
+          this.gain_comments = res.data;
           this.gain_comments = this.gain_comments.reverse();
       })
+
   },
   filters: {
       standard_date: function (value) {
