@@ -33,7 +33,7 @@
                         <li class="dropdown" v-show="is_login">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{username}}<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><router-link to="/user_detail">个人资料</router-link></li>
+                                <li><router-link to="/user_personal_page/user_blog">个人资料</router-link></li>
                                 <li><a href="#" v-on:click.prevent="logout">退出登录</a></li>                 
                             </ul>
                         </li>
@@ -128,5 +128,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
 }
+
 </style>
