@@ -43,19 +43,20 @@ export default {
           content: "",
           blog: {},
           comments: "",
-          gain_comments: []
+          gain_comments: [],
+          username: ""
       }
   },
   methods: {
       comments_submit: function () {
-          if (document.cookie == "username=false" || document.cookie == "")
+          if (this.username == "")
             alert("请先登录");
           else {
               var post = {
                   blog_writer: this.blog.writer,
                   blog_date: this.blog.blog_date,
                   content: this.comments,
-                  writer: document.cookie.replace(/username=/, ""),
+                  writer: this.username,
                   date: (new Date()).getTime()
               }
               this.$http.post("./write_comments", post).then(function (res) {
@@ -70,8 +71,12 @@ export default {
       }
   },
   created: function () {  
-      //http://localhost:3000/#/blog_content_page/
-      //var pattem = document.URL.replace(/http:\/\/localhost:3000\/#\/blog_content_page\//, "");
+      //获取session 的用户名
+      this.$http.post('./sessionGet', {}).then(function (res) {
+          this.username = res.data;
+      })
+      
+      //获取文章内容
       var pattem = document.URL.split('/');
       pattem = pattem.reverse();
       var post = {
@@ -87,6 +92,7 @@ export default {
           //this.gain_comments = this.gain_comments.reverse();
       })
 
+      //获取评论
       var post2 = {
           blog_writer: pattem[1],
           blog_date: pattem[0]

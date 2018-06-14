@@ -56,7 +56,6 @@ export default {
   name: 'App',
   data: function () {
       return {
-          cookie: document.cookie,
           search_keywords: "",
           username: "",
           is_login: false,
@@ -65,19 +64,19 @@ export default {
   },
   methods: {
       logout: function () {
-          document.cookie =  "username=false";
-          this.cookie = "username=false";
+          document.cookie =  "username=";
           this.username= "";
           this.is_login= false;
           this.is_logout= true;
-          //document.location = "http://localhost:3000/#/blog_list_page";
+          
+          this.$http.post("./sessionSet", {username: ""}).then(function (res) {
+          })
+
           this.$router.push("/blog_list_page");
       },
       search_submit: function () {
           var temp = this.search_keywords;
           this.search_keywords = "";
-          //document.location = "http://localhost:3000/#/default"
-          //document.location = "http://localhost:3000/#/search_blog/" + temp;
           this.$router.push("/search_blog/" + temp);
       }
   },
@@ -90,31 +89,37 @@ export default {
       }
   },
   created: function () {
-    this.cookie = document.cookie;
-    if (document.cookie == "username=false" || document.cookie=="") {
+    if (document.cookie=="username=" || document.cookie=="") {
         this.username = "";
         this.is_login = false;
         this.is_logout = true;
+        this.$http.post("./sessionSet", {username: ""}).then(function (res) {
+
+        })
     }
     else {
         this.username = document.cookie.replace(/username=/, "");
-        this.is_login = true;
-        this.is_logout = false;
+        this.$http.post("./sessionSet", {username: this.username}).then(function (res) {
+            this.is_login = true;
+            this.is_logout = false;
+        })
     }
   },
   watch: {
     $route (to, from) {
         if (from.name == "Login" && to.name == "Blog_list_page") {
-            if (document.cookie == "username=false" || document.cookie == "") {
-                this.username = "";
-                this.is_login = false;
-                this.is_logout = true;
-            }
-            else {
-                this.username = document.cookie.replace(/username=/, "");
-                this.is_login = true;
-                this.is_logout = false;
-            }
+            this.$http.post("./sessionGet", {}).then(function (res) {
+                this.username = res.data;
+
+                if (this.username == "") {
+                    this.is_login = false;
+                    this.is_logout = true;
+                }
+                else {
+                    this.is_login = true;
+                    this.is_logout = false;
+                }
+            })
         }
     }
   }

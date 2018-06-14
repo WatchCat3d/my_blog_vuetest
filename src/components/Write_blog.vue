@@ -27,22 +27,29 @@ export default {
   data: function () {
     return {
       title: "",
-      content: ""
+      content: "",
+      username: ""
     }
   },
+  beforeCreate: function () {
+    this.$http.post('./sessionGet', {}).then(function (res) {
+      this.username = res.data;
+      if (this.username == "") {
+          alert("请先登录");
+  
+          this.$router.push("/login");
+      }
+    })
+  },
   created: function () {  //进入该路由时，会先执行created里面的函数
-    if (document.cookie == "username=false" || document.cookie == "") {
-      alert("请先登录");
-      //document.location = "http://localhost:3000/#/login";  
-      this.$router.push("/login");
-    }
+
   },
   methods: {
     submit: function () {
       var post = {
         title: this.title,
         content: this.content,
-        writer: document.cookie.replace(/username=/, ""),
+        writer: this.username,
         blog_date: (new Date()).getTime()
       }
       this.$http.post('./write_blog', post).then(function (res) {

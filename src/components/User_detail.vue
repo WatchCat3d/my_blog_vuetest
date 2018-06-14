@@ -53,11 +53,15 @@ export default {
       }
   },
   created: function () {
-      var post = {username: document.cookie.replace(/username=/, "")};
-      this.$http.post('./user_detail', post).then(function (res) {
-          this.username = res.data[0].username;
-          this.email = res.data[0].email;
-          this.regist_date = res.data[0].regist_date;
+      this.$http.post('./sessionGet', {}).then(function (res) {
+          this.username = res.data;
+
+          var post = {username: this.username};
+          this.$http.post('./user_detail', post).then(function (res) {
+              this.username = res.data[0].username;
+              this.email = res.data[0].email;
+              this.regist_date = res.data[0].regist_date;
+          })
       })
   }
 }
