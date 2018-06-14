@@ -32,7 +32,9 @@ export default {
     }
   },
   beforeCreate: function () {
-
+    this.$http.post('./sessionGet', {}).then(function (res) {
+        this.username = res.data;
+    })
   },
   created: function () {  //进入该路由时，会先执行created里面的函数
 
@@ -46,7 +48,6 @@ export default {
         blog_date: (new Date()).getTime()
       }
       this.$http.post('./write_blog', post).then(function (res) {
-        //document.location = "http://localhost:3000/#/blog_list_page";
         this.$router.push("/blog_list_page");
       })
     }

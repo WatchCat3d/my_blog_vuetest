@@ -1,14 +1,14 @@
 <template>
     <div id="blog_list">
         <div class="list-group">
-            <router-link v-bind:to="{path: '/blog_content_page/' + blog[index].writer + '/' + blog[index].blog_date}" class="list-group-item" v-for="(item, index) in blog" :key="item.id">
+            <div class="list-group-item" v-for="(item, index) in blog" :key="item.id">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><strong>文章标题 :{{item.title}}</strong></h3>
+                    <router-link v-bind:to="{path: '/blog_content_page/' + blog[index].writer + '/' + blog[index].blog_date}" id="title" class="panel-title"><strong>文章标题 :{{item.title}}</strong></router-link>
                 </div>
                 <div class="panel-body">
                     作者: {{item.writer}} 日期: {{item.blog_date | standard_date}}
                 </div>
-            </router-link>
+            </div>
             <div class="list-group-item" id="show_empty" v-show="empty">
                 <h3>暂时没有相关内容</h3>
             </div>
@@ -74,5 +74,8 @@ export default {
     #show_empty {
         text-align: center;
         background-color:beige;
+    }
+    #title :hover {
+        color: red;
     }
 </style>

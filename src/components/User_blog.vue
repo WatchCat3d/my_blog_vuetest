@@ -1,14 +1,14 @@
 <template>
     <div id="user_blog">
         <div class="list-group">
-            <router-link v-bind:to="{path: '/blog_content_page/' + blog[index].writer + '/' + blog[index].blog_date}" class="list-group-item" v-for="(item, index) in blog" :key="item.id">
+            <div class="list-group-item" v-for="(item, index) in blog" :key="item.id">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><strong>文章标题 :{{item.title}}</strong></h3>
+                    <router-link v-bind:to="{path: '/blog_content_page/' + blog[index].writer + '/' + blog[index].blog_date}" id="title" class="panel-title"><strong>文章标题 :{{item.title}}</strong></router-link>
                 </div>
                 <div class="panel-body">
                     作者: {{item.writer}} 日期: {{item.blog_date | standard_date}}
                 </div>
-            </router-link>
+            </div>
             <div class="list-group-item" id="show_empty" v-show="empty">
                 <h3>暂时没有相关内容</h3>
             </div>
@@ -34,27 +34,35 @@ export default {
         return {
             blog: [],
             number_of_page: 1, //page数量初始化为1个
-            active_page: 0  //page从0开始，初始化为0
+            active_page: 0,  //page从0开始，初始化为0
+            username: ""
         }
     },
     created: function () {
-        var post = {page: 0};
-        this.$http.post('./blog_list',post).then(function (res) {
-            this.blog = res.data;
-            this.blog = this.blog.reverse();
-        })
-        
-        var post2 = {}
-        this.$http.get('./blog_list',post2).then(function (res) {
-            this.number_of_page = res.data.page;
-            this.number_of_page = parseInt(this.number_of_page / 10) + 1;
+        this.$http.post('./sessionGet',{}).then(function (res) {
+            this.username = res.data;
+            var post = {
+                page: 0,
+                writer: this.username
+            };
+            this.$http.post('./blog_list',post).then(function (res) {
+                this.blog = res.data;
+                this.blog = this.blog.reverse();
+            })
+            
+            var post2 = {}
+            this.$http.get('./blog_list',post2).then(function (res) {
+                this.number_of_page = res.data.page;
+                this.number_of_page = parseInt(this.number_of_page / 10) + 1;
+            })
         })
     },
     methods: {
         get_blog: function (item) {   //item指显示的内容，index为索引，两者相差了1
             this.active_page = item - 1;
             var post = {
-                page: this.active_page
+                page: this.active_page,
+                writer: this.username
             }
             this.$http.post('./blog_list',post).then(function (res) {
                 this.blog = res.data;
@@ -65,7 +73,8 @@ export default {
             if (this.active_page == 0) return;
             this.active_page--;
             var post = {
-                page: this.active_page
+                page: this.active_page,
+                writer: this.username
             }
             this.$http.post('./blog_list',post).then(function (res) {
                 this.blog = res.data;
@@ -76,7 +85,8 @@ export default {
             if (this.active_page == this.number_of_page - 1) return;
             this.active_page++;
             var post = {
-                page: this.active_page
+                page: this.active_page,
+                writer: this.username
             }
             this.$http.post('./blog_list',post).then(function (res) {
                 this.blog = res.data;
@@ -87,7 +97,8 @@ export default {
             if (this.active_page == 0) return;
             this.active_page = 0;
             var post = {
-                page: this.active_page
+                page: this.active_page,
+                writer: this.username
             }
             this.$http.post('./blog_list',post).then(function (res) {
                 this.blog = res.data;
@@ -98,7 +109,8 @@ export default {
             if (this.active_page == this.number_of_page - 1) return;
             this.active_page = this.number_of_page - 1;
             var post = {
-                page: this.active_page
+                page: this.active_page,
+                writer: this.username
             }
             this.$http.post('./blog_list',post).then(function (res) {
                 this.blog = res.data;
@@ -153,5 +165,8 @@ export default {
     }
     #pagination {
         text-align: right;
+    }
+    #title :hover {
+        color: red;
     }
 </style>
