@@ -32,14 +32,7 @@ export default {
     }
   },
   beforeCreate: function () {
-    this.$http.post('./sessionGet', {}).then(function (res) {
-      this.username = res.data;
-      if (this.username == "") {
-          alert("请先登录");
-  
-          this.$router.push("/login");
-      }
-    })
+
   },
   created: function () {  //进入该路由时，会先执行created里面的函数
 

@@ -26,7 +26,7 @@
                         <button type="submit" v-on:click.prevent="search_submit" v-bind:disabled="search_disabled" class="btn btn-default">搜索</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><router-link to="/write_blog">写博客</router-link></li>
+                        <li v-on:click.prevent="click_writeBlog"><router-link to="">写博客</router-link></li>
                         <li v-show="is_logout"><router-link to="/login">登陆</router-link></li>
                         <li v-show="is_logout"><router-link to="/regist">注册</router-link></li>
 
@@ -78,6 +78,18 @@ export default {
           var temp = this.search_keywords;
           this.search_keywords = "";
           this.$router.push("/search_blog/" + temp);
+      },
+      click_writeBlog: function () {
+        this.$http.post('./sessionGet', {}).then(function (res) {
+            this.username = res.data;
+            if (this.username == "") {
+                alert("请先登录");
+                this.$router.push("/login");
+            }
+            else {
+                this.$router.push("/write_blog");
+            }
+        })
       }
   },
   computed: {
