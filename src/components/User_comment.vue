@@ -1,5 +1,5 @@
 <template>
-  <div id="user_comment">
+  <div id="user_comment" class="text-left">
       comment
   </div>
 </template>

@@ -9,10 +9,12 @@ import Blog_content_page from '@/components/Blog_content_page';
 import User_detail from '@/components/User_detail';
 import User_blog from '@/components/User_blog';
 import User_comment from '@/components/User_comment';
+import User_manager from '@/components/User_manager';
 import User_personal_page from '@/components/User_personal_page';
 import Search_blog from '@/components/Search_blog';
+import Test from '@/components/Test';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -65,6 +67,11 @@ export default new Router({
           path: '/user_personal_page/user_comment',
           name: 'User_comment',
           component: User_comment
+        },
+        {
+          path: '/user_personal_page/user_manager',
+          name: 'User_manager',
+          component: User_manager
         }
       ]
     },
@@ -72,6 +79,11 @@ export default new Router({
       path: '/search_blog/:search_keywords',
       name: 'Search_blog',
       component: Search_blog
+    },
+    {
+      path: '/test',
+      name: 'Test',
+      component: Test
     }
   ]
-})
+});

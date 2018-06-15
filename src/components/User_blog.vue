@@ -1,5 +1,5 @@
 <template>
-    <div id="user_blog">
+    <div id="user_blog" class="text-left">
         <div class="list-group">
             <div class="list-group-item" v-for="(item, index) in blog" :key="item.id">
                 <div class="panel-heading">

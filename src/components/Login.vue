@@ -14,7 +14,7 @@
 
             <button type="submit" v-on:click.prevent="submit" :disabled="is_disabled" class="btn btn-primary">登陆</button>
             <button type="reset" class="btn btn-warning">重置</button>
-        </form>   
+        </form>  
   </div>
 </template>
 
@@ -55,6 +55,8 @@ export default {
       }
   }
 }
+
+
 
 
 

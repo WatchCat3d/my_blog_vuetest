@@ -29,11 +29,12 @@
                         <li v-on:click.prevent="click_writeBlog"><router-link to="">写博客</router-link></li>
                         <li v-show="is_logout"><router-link to="/login">登陆</router-link></li>
                         <li v-show="is_logout"><router-link to="/regist">注册</router-link></li>
+                        <li><router-link to="/test">test</router-link></li>
 
                         <li class="dropdown" v-show="is_login">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{username}}<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><router-link to="/user_personal_page/user_blog">个人资料</router-link></li>
+                                <li><router-link to="/user_personal_page/user_blog">个人中心</router-link></li>
                                 <li><a href="#" v-on:click.prevent="logout">退出登录</a></li>                 
                             </ul>
                         </li>
