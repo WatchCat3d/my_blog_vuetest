@@ -21,10 +21,28 @@
 <script>
 export default {
   name: 'HelloWorld',
-  data () {
+  data: function () {
     return {
       msg: '主要依赖: express + vue + vue-cli + vue-resource + vue-router'
     }
+  },
+  created: function () {
+    //添加创始人
+    /*var post = {
+      username: "WatchCat",
+      regist_date: (new Date()).getTime()
+    }
+    this.$http.post('./creator_add', post).then(function (res) {
+      if (res.data == 'exist_creator') {
+        alert("该用户已经是创始人");
+      }
+      else if (res.data == 'not_exist_user') {
+        alert('该用户不存在');
+      }
+      else if (res.data == 'success'){
+        alert("成功将该用户设为创始人");
+      }
+    })*/
   }
 }
 </script>

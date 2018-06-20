@@ -1,11 +1,49 @@
 <template>
-  <div id="test" class="text-left">
+  <div id="user_manager" class="text-left">
 	<br>
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			<legend>管理员职责</legend>
+			<legend>群主权限</legend>
 			<p>
-				 <em>管理员职责</em> 管理员可以<strong>删除</strong>不合规则的博客评论等，博客被删除后，
+				 <em>群主权限</em>&nbsp;&nbsp; 群主可以<strong>添加和删除</strong>管理员
+			</p>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+		<div style="font-size:16pt;">群主</div> 
+			<table class="table table-hover text-left">
+				<tbody>
+					<tr>
+						<td>
+							用户名 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{creator.username}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							注册时间 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{creator.regist_date}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							邮箱 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{creator.email}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<legend>管理员权限</legend>
+			<p>
+				 <em>管理员权限</em>&nbsp;&nbsp; 管理员可以<strong>删除</strong>不合规则的博客评论等，博客被删除后，
                  原博客链接中会显示该博客内容已被删除，评论被删除后，原评论会显示该评论已被删除。
 			</p>
 		</div>
@@ -26,7 +64,7 @@
 							用户名
 						</th>
 						<th>
-							任命时间
+							注册时间
 						</th>
 						<th>
 							邮箱
@@ -91,7 +129,7 @@
                      <input type="text" v-model="input_username" class="form-control" placeholder="输入你要添加为管理员的用户名" />
 				</div>
                 <button type="button" href="#modal-container-80547" data-toggle="modal" :disabled="is_disabled" class="btn btn-primary">确定</button>
-                <button type="reset" class="btn btn-default">重置</button>
+                <button type="reset" class="btn btn-warning">重置</button>
 			</form>
 			
 			<div class="modal fade" id="modal-container-80547" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -116,14 +154,18 @@
 			</div>
 		</div>
 	</div>
+	<br>
+	<br>
+	<br>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Test',
+  name: 'User_manager',
   data: function () {
       return {
+		  username: "",
 		  input_username: "",
 		  manager_index: "",
 		  manager: [
@@ -137,7 +179,13 @@ export default {
 			  email: "ww",
 			  regist_date: 1113437687
 			}  
-			]
+			],
+		  creator: 	{
+			  username: "1",
+			  email: "ww",
+			  regist_date: 11
+			}
+			
       }
   },
   filters: {
@@ -148,6 +196,10 @@ export default {
   methods: {
 	  click_manager_add: function () {
 		  $('#modal-container-80547').modal('hide');
+		  if (this.username != this.creator.username) {
+			  alert("你不是群主，没有该权限");
+			  return;
+		  }
 		  var post = {
 			  username: this.input_username,
 			  regist_date: (new Date()).getTime()
@@ -173,6 +225,10 @@ export default {
 	  },
 	  click_manager_delete: function () {
 		  $('#modal-container-14357').modal('hide');
+		  if (this.username != this.creator.username) {
+			  alert("你不是群主，没有该权限");
+			  return;
+		  }
 		  var post = {
 			  username: this.manager[this.manager_index].username
 		  }
@@ -188,6 +244,12 @@ export default {
 	this.$http.post('./manager_get', post).then(function (res) {
 		this.manager = res.data;
 	})
+	this.$http.post('./creator_get', post).then(function (res) {
+		this.creator = res.data[0];
+	})
+	this.$http.post('./sessionGet', {}).then(function (res) {
+        this.username = res.data;
+    })
   },
   computed: {
 	  is_disabled: function () {
