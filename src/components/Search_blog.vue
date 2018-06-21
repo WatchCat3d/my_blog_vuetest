@@ -1,5 +1,5 @@
 <template>
-    <div id="blog_list">
+    <div id="search_blog">
         <div class="list-group">
             <div class="list-group-item" v-for="(item, index) in blog" :key="item.id">
                 <div class="panel-heading">
@@ -68,7 +68,7 @@ export default {
 </script>
 
 <style scoped>
-    #blog_list {
+    #search_blog {
         text-align: left;
     }
     #show_empty {

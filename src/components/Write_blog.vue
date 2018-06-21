@@ -14,7 +14,7 @@
         </div>
         
 
-        <button type="submit" v-bind:disabled="is_submit" v-on:click.prevent="submit" class="btn btn-primary">提交</button>
+        <button type="submit" v-bind:disabled="is_submit" v-on:click.prevent="submit" class="btn btn-primary">发布</button>
     </form> 
   </div>
 </template>

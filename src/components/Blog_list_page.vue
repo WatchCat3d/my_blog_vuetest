@@ -1,7 +1,7 @@
 <template>
     <div id="blog_list">
         <div class="list-group">
-            <div class="list-group-item" v-for="(item, index) in blog" :key="item.id">
+            <div class="list-group-item hover-gray" v-for="(item, index) in blog" :key="item.id">
                 <div class="panel-heading">
                     <router-link v-bind:to="{path: '/blog_content_page/' + blog[index].writer + '/' + blog[index].blog_date}" id="title" class="panel-title"><strong>文章标题 :{{item.title}}</strong></router-link>
                 </div>
@@ -32,7 +32,13 @@ export default {
     name: 'Blog_list_page',
     data: function () {
         return {
-            blog: [],
+            blog: [
+                {
+                    writer: "sss",
+                    blog_date: 4354,
+                    title: "11"
+                }
+            ],
             number_of_page: 1, //page数量初始化为1个
             active_page: 0  //page从0开始，初始化为0
         }
@@ -45,7 +51,7 @@ export default {
         })
         
         var post2 = {}
-        this.$http.get('./blog_list',post2).then(function (res) {
+        this.$http.post('./blog_count',post2).then(function (res) {
             this.number_of_page = res.data.page;
             this.number_of_page = parseInt(this.number_of_page / 10) + 1;
         })
@@ -156,5 +162,8 @@ export default {
     }
     #title :hover {
         color: red;
+    }
+    .hover-gray:hover {
+        background-color: #FAFAFA;
     }
 </style>
