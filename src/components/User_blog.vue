@@ -8,7 +8,7 @@
                 <div class="panel-body">
                     作者: {{item.writer}} 日期: {{item.blog_date | standard_date}} 
 					<a class="float-right"  role="button" href="#modal-container-14357" v-on:click="click_blog_index(index)" data-toggle="modal">删除</a> 
-					<a class="float-right" role="button" >修改</a>
+					<a class="float-right" role="button" v-on:click.prevent="update_blog_click(index)">修改</a> 
 
 					<div class="modal fade" id="modal-container-14357" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
@@ -60,7 +60,8 @@ export default {
 				{
                     writer: "sss",
                     blog_date: 4354,
-                    title: "11"
+                    title: "11",
+                    content: "content"
                 }
 			],
 			blog_index: "",
@@ -91,6 +92,14 @@ export default {
         })
     },
     methods: {
+        update_blog_click: function (index) {
+            this.$router.push({
+                name: 'Update_blog',
+                params: {
+                    blog: this.blog[index]
+                }
+            });
+        },
 		click_blog_index: function (index) {
 			this.blog_index = index;
 	    },

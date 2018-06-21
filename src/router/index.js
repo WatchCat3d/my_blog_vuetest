@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld';
 import Regist from '@/components/Regist';
 import Login from '@/components/Login';
 import Write_blog from '@/components/Write_blog';
+import Update_blog from '@/components/Update_blog';
 import Blog_list_page from '@/components/Blog_list_page';
 import Blog_content_page from '@/components/Blog_content_page';
 import User_detail from '@/components/User_detail';
@@ -37,6 +38,11 @@ export default new Router({
       path: '/write_blog',
       name: 'Write_blog',
       component: Write_blog
+    },
+    {
+      path: '/update_blog',
+      name: 'Update_blog',
+      component: Update_blog
     },
     {
       path: '/blog_list_page',
