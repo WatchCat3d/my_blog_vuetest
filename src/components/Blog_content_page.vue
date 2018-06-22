@@ -27,9 +27,11 @@
     <legend style="text-align:left;">全部评论</legend>
     <div id="comments_list" class="list-group" style="text-align:left;">
         <li style="list-style: none;" v-for="item in gain_comments" :key="item.id">
-            <p style="font-size: 12pt;word-break:break-word;">{{item.content}}</p>
-            <p >——{{item.writer}} {{item.date | standard_date}}</p>
-            <hr>
+            <blockquote>
+                <p style="font-size: 12pt;word-break:break-word;">{{item.content}}</p>
+                <small>{{item.writer}} {{item.date | standard_date}}</small>
+                <hr>
+            </blockquote>
         </li>
     </div>
   </div>

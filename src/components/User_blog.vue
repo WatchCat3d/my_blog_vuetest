@@ -106,7 +106,7 @@ export default {
 		click_blog_delete: function () {
             $('#modal-container-14357').modal('hide');
             var post = {
-                writer: this.blog[this.blog_index].username,
+                writer: this.blog[this.blog_index].writer,
                 blog_date: this.blog[this.blog_index].blog_date
             }
 			this.$http.post('./blog_delete', post).then(function (res) {
