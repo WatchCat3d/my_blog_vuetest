@@ -222,7 +222,7 @@ export default {
 </script>
 
 <style scoped>
-    #blog_list {
+    #user_blog {
         text-align: left;
     }
     #show_empty {

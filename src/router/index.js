@@ -5,12 +5,14 @@ import Regist from '@/components/Regist';
 import Login from '@/components/Login';
 import Write_blog from '@/components/Write_blog';
 import Update_blog from '@/components/Update_blog';
+import Update_draft from '@/components/Update_draft';
 import Blog_list_page from '@/components/Blog_list_page';
 import Blog_content_page from '@/components/Blog_content_page';
 import User_detail from '@/components/User_detail';
 import User_blog from '@/components/User_blog';
 import User_comment from '@/components/User_comment';
 import User_manager from '@/components/User_manager';
+import User_draft from '@/components/User_draft';
 import User_personal_page from '@/components/User_personal_page';
 import Search_blog from '@/components/Search_blog';
 import Test from '@/components/Test';
@@ -43,6 +45,11 @@ export default new Router({
       path: '/update_blog',
       name: 'Update_blog',
       component: Update_blog
+    },
+    {
+      path: '/update_draft',
+      name: 'Update_draft',
+      component: Update_draft
     },
     {
       path: '/blog_list_page',
@@ -78,6 +85,11 @@ export default new Router({
           path: '/user_personal_page/user_manager',
           name: 'User_manager',
           component: User_manager
+        },
+        {
+          path: '/user_personal_page/user_draft',
+          name: 'User_draft',
+          component: User_draft
         }
       ]
     },
