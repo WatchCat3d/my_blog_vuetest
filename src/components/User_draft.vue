@@ -1,4 +1,5 @@
 <template>
+    <div>
     <div id="user_draft" class="text-left">
         <div class="list-group">
             <div class="list-group-item hover-gray" v-for="(item, index) in draft" :key="item.id">
@@ -35,7 +36,7 @@
                     <div class="modal fade" id="modal-container-release" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header">
+								<div class="modal-header"></div>
 										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 									<h4 class="modal-title" id="myModalLabel">
 										发布
@@ -70,6 +71,7 @@
             </ul>
         </div>
                         
+    </div>
     </div>
 </template>
 
@@ -252,7 +254,6 @@ export default {
         }
     }
 }
-
 </script>
 
 <style scoped>
