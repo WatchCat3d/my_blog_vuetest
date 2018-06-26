@@ -8,6 +8,7 @@ import Update_blog from '@/components/Update_blog';
 import Update_draft from '@/components/Update_draft';
 import Blog_list_page from '@/components/Blog_list_page';
 import Blog_content_page from '@/components/Blog_content_page';
+import Draft_content_page from '@/components/Draft_content_page';
 import User_detail from '@/components/User_detail';
 import User_blog from '@/components/User_blog';
 import User_comment from '@/components/User_comment';
@@ -60,6 +61,11 @@ export default new Router({
       path: '/blog_content_page/:username/:blog_date',
       name: 'Blog_content_page',
       component: Blog_content_page
+    },
+    {
+      path: '/draft_content_page/:username/:blog_date',
+      name: 'Draft_content_page',
+      component: Draft_content_page
     },
     {
       path: '/user_personal_page',

@@ -1,10 +1,10 @@
 <template>
-    <div>
+
     <div id="user_draft" class="text-left">
         <div class="list-group">
             <div class="list-group-item hover-gray" v-for="(item, index) in draft" :key="item.id">
                 <div class="panel-heading">
-                    <router-link v-bind:to="{path: '/blog_content_page/' + draft[index].writer + '/' + draft[index].draft_date}" id="title" class="panel-title"><strong>文章标题 :{{item.title}}</strong></router-link>
+                    <router-link v-bind:to="{path: '/draft_content_page/' + draft[index].writer + '/' + draft[index].draft_date}" id="title" class="panel-title"><strong>文章标题 :{{item.title}}</strong></router-link>
                 </div>
                 <div class="panel-body">
                     作者: {{item.writer}} 日期: {{item.draft_date | standard_date}} 
@@ -33,10 +33,10 @@
 						</div>
 					</div>
 
-                    <div class="modal fade" id="modal-container-release" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal fade" id="modal-container-release" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header"></div>
+								<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 									<h4 class="modal-title" id="myModalLabel">
 										发布
@@ -72,7 +72,7 @@
         </div>
                         
     </div>
-    </div>
+
 </template>
 
 <script>
@@ -133,7 +133,21 @@ export default {
                 draft_date: this.draft[this.draft_index].draft_date
             }
             this.$http.post('./draft_release', post).then(function (res) {
-
+                var post = {
+                    page: 0,
+                    writer: this.username
+                };
+                this.$http.post('./draft_list',post).then(function (res) {
+                    this.draft = res.data;
+                    this.draft = this.draft.reverse();
+                })
+                var post2 = {
+                    writer: this.username
+                };
+                this.$http.post('./draft_count',post2).then(function (res) {
+                    this.number_of_page = res.data.page;
+                    this.number_of_page = parseInt(this.number_of_page / 10) + 1;
+                })
             })
         },
 		click_draft_index: function (index) {
