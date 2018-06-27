@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    
+     <div id="head">
+
+     </div>
      <div id="front">
             <nav class="navbar navbar-default" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -148,5 +150,9 @@ export default {
   color: #2c3e50;
 
 }
-
+#head {
+    height: 100px;
+    background-image: url("./assets/Egypt.jpg");
+    background-position-y: -30px;
+}
 </style>

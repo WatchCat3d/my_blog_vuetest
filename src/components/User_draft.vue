@@ -134,7 +134,7 @@ export default {
             }
             this.$http.post('./draft_release', post).then(function (res) {
                 var post = {
-                    page: 0,
+                    page: this.active_page,
                     writer: this.username
                 };
                 this.$http.post('./draft_list',post).then(function (res) {

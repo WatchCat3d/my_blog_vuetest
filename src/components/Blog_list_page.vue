@@ -7,6 +7,28 @@
                 </div>
                 <div class="panel-body">
                     作者: {{item.writer}} 日期: {{item.blog_date | standard_date}}
+                    <a class="float-right" v-show="is_manager"  role="button" href="#modal-container-14357" v-on:click="click_blog_index(index)" data-toggle="modal">删除</a> 
+
+					<div class="modal fade" id="modal-container-14357" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+									<h4 class="modal-title" id="myModalLabel">
+										删除
+									</h4>
+								</div>
+								<div class="modal-body">
+									你确定要删除该博客吗？
+								</div>
+								<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> 
+										<button type="button" class="btn btn-primary" v-on:click="click_blog_delete">确定</button>
+								</div>
+							</div>
+							
+						</div>
+					</div>
                 </div>
             </div>
             <div class="list-group-item" id="show_empty" v-show="empty">
@@ -39,8 +61,11 @@ export default {
                     title: "11"
                 }
             ],
+            blog_index: "",
             number_of_page: 1, //page数量初始化为1个
-            active_page: 0  //page从0开始，初始化为0
+            active_page: 0,  //page从0开始，初始化为0
+            username: "",
+            is_manager: false
         }
     },
     created: function () {
@@ -55,8 +80,80 @@ export default {
             this.number_of_page = res.data.page;
             this.number_of_page = parseInt(this.number_of_page / 10) + 1;
         })
+
+        //获取用户名
+        this.$http.post('./sessionGet', {}).then(function (res) {
+            this.username = res.data;
+            var post = {
+                username: this.username
+            }
+            if (this.username == "") {
+                this.is_manager = false;
+            }
+            else {
+                this.$http.post('./manager_count', post).then(function (res) {
+                    if (res.data.count > 0) {
+                        this.is_manager = true;
+                    }
+                    else {
+                        this.is_manager = false;
+                    }
+                })
+            }
+        })
     },
     methods: {
+        click_blog_index: function (index) {
+			this.blog_index = index;
+	    },
+        click_blog_delete: function () {
+            $('#modal-container-14357').modal('hide');
+
+            //获取用户名 二次验证
+            this.$http.post('./sessionGet', {}).then(function (res) {
+                this.username = res.data;
+                var post = {
+                    username: this.username
+                }
+                if (this.username == "") {
+                    this.is_manager = false;
+                }
+                else {
+                    this.$http.post('./manager_count', post).then(function (res) {
+                        if (res.data.count > 0) {
+                            this.is_manager = true;
+                        }
+                        else {
+                            this.is_manager = false;
+                        }
+                    })
+                }
+                if (this.is_manager == false) {
+                    alert("请用管理员账号登录");
+                    return;
+                }
+                
+                var post = {
+                    writer: this.blog[this.blog_index].writer,
+                    blog_date: this.blog[this.blog_index].blog_date
+                }
+                this.$http.post('./blog_delete', post).then(function (res) {
+                    var post2 = {
+                        page: this.active_page,
+                        writer: this.username
+                    }
+                    this.$http.post('./blog_list', post2).then(function (res) {
+                        this.blog = res.data;
+                        this.blog = this.blog.reverse();
+                    })
+                    this.$http.post('./blog_count',{writer: this.username}).then(function (res) {
+                        this.number_of_page = res.data.page;
+                        this.number_of_page = parseInt(this.number_of_page / 10) + 1;
+                    })
+                })
+
+            })
+		},
         get_blog: function (item) {   //item指显示的内容，index为索引，两者相差了1
             this.active_page = item - 1;
             var post = {
@@ -165,5 +262,8 @@ export default {
     }
     .hover-gray:hover {
         background-color: #FAFAFA;
+    }
+    .float-right {
+        float: right;
     }
 </style>
