@@ -1,5 +1,5 @@
 <template>
-  <div id="main">
+  <div id="main" class="container">
     <div id="draft_content">
         <h1>{{draft.title}}</h1>
         <h4>作者: {{draft.writer}} 发表于: {{draft.draft_date | standard_date}}</h4>

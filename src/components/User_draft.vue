@@ -1,6 +1,6 @@
 <template>
 
-    <div id="user_draft" class="text-left">
+    <div id="user_draft" class="text-left container">
         <div class="list-group">
             <div class="list-group-item hover-gray" v-for="(item, index) in draft" :key="item.id">
                 <div class="panel-heading">

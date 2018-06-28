@@ -1,5 +1,5 @@
 <template>  
-    <div id="user_comment" class="text-left">
+    <div id="user_comment" class="text-left container">
         <div class="list-group">
             <div class="list-group-item hover-gray" v-for="(item, index) in blogComment" :key="item.id">
                 <blockquote>

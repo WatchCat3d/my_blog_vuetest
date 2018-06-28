@@ -1,5 +1,5 @@
 <template>
-  <div id="login_form">           
+  <div id="login_form" class="container">           
         <form action="./login" method="POST" role="form">
             <legend><h1>登陆</h1></legend>
 

@@ -1,5 +1,5 @@
 <template>
-  <div id="user_personal_page">
+  <div id="user_personal_page" class="container">
     <ul class="nav nav-tabs">
         <li :class="{'active': active_nav == 0}" v-on:click="my_blog_click"><router-link to="/user_personal_page/user_blog">我的博客</router-link></li>
         <li :class="{'active': active_nav == 1}" v-on:click="my_comment_click"><router-link to="/user_personal_page/user_comment">我的评论</router-link></li>

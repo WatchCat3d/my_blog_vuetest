@@ -1,5 +1,5 @@
 <template>
-  <div id="update_draft">
+  <div id="update_draft" class="container">
     <form action="./draft_update" method="POST" role="form">
         <legend><h1>更新草稿</h1></legend>
 

@@ -1,5 +1,5 @@
 <template>
-    <div id="regist_form">
+    <div id="regist_form" class="container">
         <form action="./regist" method="POST" role="form">
             <legend><h1>注册</h1></legend>
 

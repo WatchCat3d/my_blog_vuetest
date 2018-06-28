@@ -1,5 +1,5 @@
 <template>
-  <div id="main">
+  <div id="main" class="container">
     <div id="blog_content">
         <h1>{{blog.title}}</h1>
         <h4>作者: {{blog.writer}} 发表于: {{blog.blog_date | standard_date}}</h4>
@@ -26,12 +26,33 @@
     <br>
     <legend style="text-align:left;">全部评论</legend>
     <div id="comments_list" class="list-group" style="text-align:left;">
-        <li style="list-style: none;" v-for="item in gain_comments" :key="item.id">
+        <li style="list-style: none;" v-for="(item, index) in gain_comments" :key="item.id">
             <blockquote>
                 <p style="font-size: 12pt;word-break:break-word;">{{item.content}}</p>
-                <small>{{item.writer}} {{item.date | standard_date}}</small>
-                <hr>
+                <a class="float-right fontSmall" v-show="is_manager" role="button" href="#modal-container-14357" v-on:click="click_comment_index(index)" data-toggle="modal">删除</a> 
+                <small>{{item.writer}} {{item.date | standard_date}}</small>             
             </blockquote>
+
+            <div class="modal fade" id="modal-container-14357" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                删除
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            你确定要删除该评论吗？
+                        </div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> 
+                                <button type="button" class="btn btn-primary" v-on:click="click_comment_delete">确定</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
         </li>
     </div>
   </div>
@@ -45,11 +66,67 @@ export default {
           content: "",
           blog: {},
           comments: "",
-          gain_comments: [],
-          username: ""
+          gain_comments: [{
+              writer:"sss",
+              date: 15135131,
+              content:"sdfasdf"
+          }],
+          username: "",
+          comment_index: "",
+          is_manager: false
       }
   },
   methods: {
+      click_comment_index: function (index) {
+          this.comment_index = index;
+      },
+      click_comment_delete: function () {
+        $('#modal-container-14357').modal('hide');
+          
+        //获取用户名 二次验证
+        this.$http.post('./sessionGet', {}).then(function (res) {
+            this.username = res.data;
+            var post = {
+                username: this.username
+            }
+            if (this.username == "") {
+                this.is_manager = false;
+            }
+            else {
+                this.$http.post('./manager_count', post).then(function (res) {
+                    if (res.data.count > 0) {
+                        this.is_manager = true;
+                    }
+                    else {
+                        this.is_manager = false;
+                    }
+                })
+            }
+            if (this.is_manager == false) {
+                alert("请用管理员账号登录");
+                return;
+            }
+            
+            var post = {
+                writer: this.gain_comments[this.comment_index].writer,
+                date: this.gain_comments[this.comment_index].date
+            }
+            this.$http.post('./blogComment_delete', post).then(function (res) {
+                //获取评论
+                var pattem = document.URL.split('/');
+                pattem = pattem.reverse();
+                var post2 = {
+                    blog_writer: pattem[1],
+                    blog_date: pattem[0]
+                }
+                this.$http.post('./blog_comment', post2).then(function (res) {
+                    this.gain_comments = res.data;
+                    this.gain_comments = this.gain_comments.reverse();
+                })
+            })
+
+        })
+      },
       comments_submit: function () {
           if (this.username == "")
             alert("请先登录");
@@ -76,6 +153,23 @@ export default {
       //获取session 的用户名
       this.$http.post('./sessionGet', {}).then(function (res) {
           this.username = res.data;
+
+        var post = {
+            username: this.username
+        }
+        if (this.username == "") {
+            this.is_manager = false;
+        }
+        else {
+            this.$http.post('./manager_count', post).then(function (res) {
+                if (res.data.count > 0) {
+                    this.is_manager = true;
+                }
+                else {
+                    this.is_manager = false;
+                }
+            })
+        }
       })
       
       //获取文章内容
@@ -127,5 +221,11 @@ export default {
     }
     #blog_content h4 {
         margin-top: 20px;
+    }
+    .float-right {
+        float: right;
+    }
+    .fontSmall {
+        font-size: 12pt;
     }
 </style>

@@ -1,51 +1,56 @@
 <template>
-    <div id="blog_list">
-        <div class="list-group">
-            <div class="list-group-item hover-gray" v-for="(item, index) in blog" :key="item.id">
-                <div class="panel-heading">
-                    <router-link v-bind:to="{path: '/blog_content_page/' + blog[index].writer + '/' + blog[index].blog_date}" id="title" class="panel-title"><strong>文章标题 :{{item.title}}</strong></router-link>
-                </div>
-                <div class="panel-body">
-                    作者: {{item.writer}} 日期: {{item.blog_date | standard_date}}
-                    <a class="float-right" v-show="is_manager"  role="button" href="#modal-container-14357" v-on:click="click_blog_index(index)" data-toggle="modal">删除</a> 
-
-					<div class="modal fade" id="modal-container-14357" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-									<h4 class="modal-title" id="myModalLabel">
-										删除
-									</h4>
-								</div>
-								<div class="modal-body">
-									你确定要删除该博客吗？
-								</div>
-								<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> 
-										<button type="button" class="btn btn-primary" v-on:click="click_blog_delete">确定</button>
-								</div>
-							</div>
-							
-						</div>
-					</div>
-                </div>
+    <div>
+        <div id="blog_list" class="container noMarginTop">
+            <div class="text-left headBackground">
+                <h1>博客中心</h1>
             </div>
-            <div class="list-group-item" id="show_empty" v-show="empty">
-                <h3>暂时没有相关内容</h3>
-            </div>
-        </div>  
+            <div class="list-group">
+                <div class="list-group-item hover-gray" v-for="(item, index) in blog" :key="item.id">
+                    <div class="panel-heading">
+                        <router-link v-bind:to="{path: '/blog_content_page/' + blog[index].writer + '/' + blog[index].blog_date}" id="title" class="panel-title"><strong>文章标题 :{{item.title}}</strong></router-link>
+                    </div>
+                    <div class="panel-body">
+                        作者: {{item.writer}} 日期: {{item.blog_date | standard_date}}
+                        <a class="float-right" v-show="is_manager"  role="button" href="#modal-container-14357" v-on:click="click_blog_index(index)" data-toggle="modal">删除</a> 
 
-        <div id="pagination" v-show="!empty">
-            <ul class="pagination pagination">
-                <li v-on:click.prevent="get_first_blog"><a href="">首页</a></li>
-                <li class="page-item" v-on:click.prevent="get_prev_blog"><a class="page-link" href="#">&laquo;</a></li>
-                <li :class="{'active': item - 1 == active_page}" v-on:click.prevent="get_blog(item)" v-for="(item, index) in page_loop" :key="item.id"><a class="page-link" href="#">{{item}}</a></li>
-                <li class="page-item" v-on:click.prevent="get_next_blog"><a class="page-link" href="#">&raquo;</a></li>
-                <li v-on:click.prevent="get_last_blog"><a href="">尾页</a></li>
-            </ul>
+                        <div class="modal fade" id="modal-container-14357" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" id="myModalLabel">
+                                            删除
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        你确定要删除该博客吗？
+                                    </div>
+                                    <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> 
+                                            <button type="button" class="btn btn-primary" v-on:click="click_blog_delete">确定</button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item" id="show_empty" v-show="empty">
+                    <h3>暂时没有相关内容</h3>
+                </div>
+            </div>  
+
+            <div id="pagination" v-show="!empty">
+                <ul class="pagination pagination">
+                    <li v-on:click.prevent="get_first_blog"><a href="">首页</a></li>
+                    <li class="page-item" v-on:click.prevent="get_prev_blog"><a class="page-link" href="#">&laquo;</a></li>
+                    <li :class="{'active': item - 1 == active_page}" v-on:click.prevent="get_blog(item)" v-for="(item, index) in page_loop" :key="item.id"><a class="page-link" href="#">{{item}}</a></li>
+                    <li class="page-item" v-on:click.prevent="get_next_blog"><a class="page-link" href="#">&raquo;</a></li>
+                    <li v-on:click.prevent="get_last_blog"><a href="">尾页</a></li>
+                </ul>
+            </div>
+                            
         </div>
-                        
     </div>
 </template>
 
@@ -265,5 +270,12 @@ export default {
     }
     .float-right {
         float: right;
+    }
+    .headBackground {
+        background-image: url('../assets/img/journey.jpg');
+        height: 100px;
+    }
+    .noMarginTop {
+        margin-top: -40px;
     }
 </style>

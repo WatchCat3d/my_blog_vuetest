@@ -1,5 +1,5 @@
 <template>
-  <div id="user_detail">
+  <div id="user_detail" class="container">
         <table class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>

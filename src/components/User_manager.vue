@@ -1,5 +1,5 @@
 <template>
-  <div id="user_manager" class="text-left">
+  <div id="user_manager" class="text-left container">
 	<br>
 	<div class="row clearfix">
 		<div class="col-md-12 column">

@@ -1,5 +1,5 @@
 <template>
-  <div id="update_blog">
+  <div id="update_blog" class="container">
     <form action="./update_blog" method="POST" role="form">
         <legend><h1>更新博客</h1></legend>
 

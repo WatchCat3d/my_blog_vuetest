@@ -44,7 +44,7 @@
                 </div><!-- /.navbar-collapse -->
             </nav>
       </div>
-      <div id="container" class="container">
+      <div>
         <router-view></router-view>
       </div>
   </div>
@@ -152,7 +152,7 @@ export default {
 }
 #head {
     height: 100px;
-    background-image: url("./assets/Egypt.jpg");
+    background-image: url("./assets/img/Egypt.jpg");
     background-position-y: -30px;
 }
 </style>
