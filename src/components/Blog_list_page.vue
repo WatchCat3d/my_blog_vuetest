@@ -2,8 +2,9 @@
     <div>
         <div id="blog_list" class="container noMarginTop">
             <div class="text-left headBackground">
-                <h2>博客中心</h2>
+
             </div>
+            <br>
             <div class="list-group">
                 <div class="list-group-item hover-gray" v-for="(item, index) in blog" :key="item.id">
                     <div class="panel-heading">
@@ -272,8 +273,11 @@ export default {
         float: right;
     }
     .headBackground {
-        background-image: url('../assets/img/journey.jpg');
-        height: 100px;
+        background-image: url('../assets/img/bookAndPen.jpg');
+        height: 200px;
+        background-size: 100%;
+        background-position-y: -400px;
+        color: white;
     }
     .noMarginTop {
         margin-top: -40px;

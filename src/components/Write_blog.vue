@@ -1,22 +1,36 @@
 <template>
-  <div id="write_blog" class="container">
-    <form action="./write_blog" method="POST" role="form">
-        <legend><h1>写博客</h1></legend>
+    <div class="bgImg">
+        <div id="write_blog" class="container">
+            <form action="./write_blog" method="POST" role="form">
+                <legend><h1>写博客</h1></legend>
 
-        <div class="form-group">
-            <label for="">标题</label>
-            <input name="title" v-model="title" type="text" class="form-control" id="title" autocomplete="off" placeholder="博客标题">
+                <div class="form-group">
+                    <label for="">标题</label>
+                    <input name="title" v-model="title" type="text" class="form-control" id="title" autocomplete="off" placeholder="博客标题">
+                </div>
+                
+                <div class="input-group">
+                    <label for="">内容</label>
+                    <textarea name="content" v-model="content" id="content" class="form-control" cols="153" rows="30" autocomplete="off" required="required"></textarea>
+                </div>
+                <br>
+                <div>
+                    <button type="submit" v-bind:disabled="is_submit" v-on:click.prevent="submit" class="btn btn-primary buttonWidth">发布</button>
+                    <button type="submit" v-bind:disabled="is_empty" v-on:click.prevent="draft_add" class="btn btn-warning buttonWidth">保存</button>           
+                </div>
+
+            </form> 
+            <br>
+            <br>
+            <br>
         </div>
-        
-        <div class="input-group">
-            <label for="">内容</label>
-            <textarea name="content" v-model="content" id="content" class="form-control" cols="153" rows="30" autocomplete="off" required="required"></textarea>
-        </div>
-        
-        <button type="submit" v-bind:disabled="is_submit" v-on:click.prevent="submit" class="btn btn-primary">发布</button>
-        <button type="submit" v-bind:disabled="is_empty" v-on:click.prevent="draft_add" class="btn btn-warning">保存</button>
-    </form> 
-  </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+
 </template>
 
 
@@ -88,5 +102,16 @@ export default {
 <style scoped>
   #write_blog {
     text-align: left;
+    background-color: white;
+  }
+  .bgImg {
+      background-image: url("../assets/img/book.png");
+      background-repeat: no-repeat;
+      margin-top: -20px;
+      background-size: 100%;
+      padding-top: 0px;
+  }
+  .buttonWidth {
+      width: 100px;
   }
 </style>

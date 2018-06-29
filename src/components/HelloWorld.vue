@@ -24,6 +24,8 @@
         </div>
       </div>
 
+      <br>
+
       <div class="row clearfix">
         <div class="col-md-12 column">
           <div class="row clearfix">
@@ -42,10 +44,10 @@
                     <img alt="" src="../assets/img/littleSprite2.jpg" />
                     <div class="carousel-caption">
                       <h4>
-                        First Thumbnail label
+                        毛线小精灵
                       </h4>
                       <p>
-                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                        这个浑身毛线的神秘生物亚尼将在拟真的游戏中进行冒险，它一边前进，一边拖着背后长长的毛线，它可以消耗身上的毛线前进、攀高或架桥。《毛线小精灵》将自然与怀旧相结合，创造了一段动人的旅程。
                       </p>
                     </div>
                   </div>
@@ -53,10 +55,10 @@
                     <img alt="" src="../assets/img/ori.jpg" />
                     <div class="carousel-caption">
                       <h4>
-                        Second Thumbnail label
+                        奥日与黑暗森林
                       </h4>
                       <p>
-                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                        在一片叫做尼布尔山的森林中有个守护神“灵魂树”，灵魂树失去了行使魔力的法器，丧失了对森林的干涉和保护能力，森林丧失了生机。奥里踏上冒险旅程，决心恢复三个生命元素，复活灵魂树。
                       </p>
                     </div>
                   </div>
@@ -64,10 +66,10 @@
                     <img alt="" src="../assets/img/journey.jpg" />
                     <div class="carousel-caption">
                       <h4>
-                        Third Thumbnail label
+                        风之旅人
                       </h4>
                       <p>
-                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                        身着兜帽长袍茕茕孑立的寂寞旅人自沙漠中醒来，唯一的目标便是远方的山。在那座山上有一道光，直通天际。旅者认为那里是圣人的所在地，为了朝圣踏上了未知的旅途。
                       </p>
                     </div>
                   </div>
@@ -90,6 +92,8 @@
         </div>
       </div>
 
+      <br>
+      <br>
       <br>
 
       <div class="row clearfix">
@@ -153,8 +157,11 @@
         </div>
       </div>
     </div>
-    <br>
 
+    <br>
+    <br>
+    <br>
+    
   </div>
   </div>
   </div>

@@ -1,8 +1,9 @@
 <template>
   <div id="user_personal_page" class="container">
-    <div class="bgImg">
-        <h2>{{username}}的个人中心</h2>
+    <div class="bgImg headWord text-left">
+        <h1>{{username}}的个人中心</h1>
     </div>
+    <br>
     <ul class="nav nav-tabs">
         <li :class="{'active': active_nav == 0}" v-on:click="my_blog_click"><router-link to="/user_personal_page/user_blog">我的博客</router-link></li>
         <li :class="{'active': active_nav == 1}" v-on:click="my_comment_click"><router-link to="/user_personal_page/user_comment">我的评论</router-link></li>
@@ -24,7 +25,7 @@ export default {
       return {
           active_nav: 0,
           is_creator_or_manager: false,
-          username: ""
+          username: "Watchcat"
       }
   },
   methods: {
@@ -77,9 +78,17 @@ export default {
 
 <style scoped>
 .bgImg {
-    background-image: url("../assets/img/Egypt.jpg");
-    height: 100px;
+    background-image: url("../assets/img/star.jpg");
+    height: 250px;
     margin-top: -40px;
+    background-size: 150%;
+    background-position-y: -300px;
+}
+.headWord {
+    color: white;
+    padding-top: 170px;
+    padding-left: 20px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 </style>
 
