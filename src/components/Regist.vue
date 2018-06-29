@@ -1,32 +1,40 @@
 <template>
-    <div id="regist_form" class="container">
-        <form action="./regist" method="POST" role="form">
-            <legend><h1>注册</h1></legend>
+    <div class="bgImg">
+        <div class="secondBg">
+            <div id="regist_form" class="container column col-lg-offset-6 col-md-offset-4 col-sm-offset-4 col-lg-5 col-md-7 col-sm-7">
+                <form action="./regist" method="POST" role="form">
+                    <legend class="text-center"><h1>注册</h1></legend>
 
-            <div class="form-group has-feedback">
-                <label for="">用户名</label>
-                <input type="text" class="form-control" name="username" id="username" v-model="username" v-on:change="username_verify" maxlength="18" placeholder="6~18位英文字母、数字或下划线,开头只能是字母或下划线">
-                <span class="glyphicon glyphicon-ok form-control-feedback" v-show="istrue_username"></span>
+                    <div class="form-group has-feedback">
+                        <label for="">用户名</label>
+                        <input type="text" class="form-control" name="username" id="username" v-model="username" v-on:change="username_verify" maxlength="18" placeholder="6~18位英文字母、数字或下划线,开头只能是字母或下划线">
+                        <span class="glyphicon glyphicon-ok form-control-feedback" v-show="istrue_username"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="">密码</label>
+                        <input type="password" class="form-control" name="password" id="password" v-model="password" v-on:change="password_verify" autocomplete="off" placeholder="密码至少6位">
+                        <span class="glyphicon glyphicon-ok form-control-feedback" v-show="istrue_password"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="">确认密码</label>
+                        <input type="password" class="form-control" name="verify_password" id="verify_password" v-model="verify_password" v-on:change="verify_password_verify" autocomplete="off" placeholder="请再次确认密码">
+                        <span class="glyphicon glyphicon-ok form-control-feedback" v-show="issame_password"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="">邮箱</label>
+                        <input type="email" class="form-control" name="email" id="email" v-model="email" v-on:change="email_verify" placeholder="正确的邮箱地址">
+                        <span class="glyphicon glyphicon-ok form-control-feedback" v-show="istrue_email"></span>
+                    </div>  
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary buttonWidth" v-on:click.prevent="submit" v-bind:disabled="isAllTrue">注册</button>
+                        <button type="reset" class="btn btn-warning buttonWidth" v-on:click.prevent="reset">重置</button>
+                        <br>
+                        <br>
+                        <router-link to="/Login">已经有账号了？去登陆</router-link>
+                    </div>
+                </form>
             </div>
-            <div class="form-group has-feedback">
-                <label for="">密码</label>
-                <input type="password" class="form-control" name="password" id="password" v-model="password" v-on:change="password_verify" autocomplete="off" placeholder="密码至少6位">
-                <span class="glyphicon glyphicon-ok form-control-feedback" v-show="istrue_password"></span>
-            </div>
-            <div class="form-group has-feedback">
-                <label for="">确认密码</label>
-                <input type="password" class="form-control" name="verify_password" id="verify_password" v-model="verify_password" v-on:change="verify_password_verify" autocomplete="off" placeholder="请再次确认密码">
-                <span class="glyphicon glyphicon-ok form-control-feedback" v-show="issame_password"></span>
-            </div>
-            <div class="form-group has-feedback">
-                <label for="">邮箱</label>
-                <input type="email" class="form-control" name="email" id="email" v-model="email" v-on:change="email_verify" placeholder="正确的邮箱地址">
-                <span class="glyphicon glyphicon-ok form-control-feedback" v-show="istrue_email"></span>
-            </div>  
-            
-            <button type="submit" class="btn btn-primary" v-on:click.prevent="submit" v-bind:disabled="isAllTrue">注册</button>
-            <button type="reset" class="btn btn-warning" v-on:click.prevent="reset">重置</button>
-        </form>
+        </div>
     </div>
 </template>
 
@@ -130,6 +138,23 @@ export default {
 <style scoped>
     #regist_form {
         text-align: left;
+        background-color: white;
+        height: 500px; 
+    }
+    .secondBg {
+        background-image: url("../assets/img/waterBg.jpg");
+        height: 730px;
+        padding-top: 100px;
+    }
+    .bgImg {
+        background-image: url("../assets/img/blueBg.jpg");
+        height: 822px;
+        margin-top: -20px;
+        padding-top: 50px;
+        background-color: #D6E9E7;
+    }
+    .buttonWidth {
+        width: 130px;
     }
 </style>
 

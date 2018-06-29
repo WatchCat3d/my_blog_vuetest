@@ -1,5 +1,8 @@
 <template>
   <div id="user_personal_page" class="container">
+    <div class="bgImg">
+        <h2>{{username}}的个人中心</h2>
+    </div>
     <ul class="nav nav-tabs">
         <li :class="{'active': active_nav == 0}" v-on:click="my_blog_click"><router-link to="/user_personal_page/user_blog">我的博客</router-link></li>
         <li :class="{'active': active_nav == 1}" v-on:click="my_comment_click"><router-link to="/user_personal_page/user_comment">我的评论</router-link></li>
@@ -20,7 +23,8 @@ export default {
   data: function () {
       return {
           active_nav: 0,
-          is_creator_or_manager: false
+          is_creator_or_manager: false,
+          username: ""
       }
   },
   methods: {
@@ -47,6 +51,7 @@ export default {
   },
   beforeCreate: function () {
     this.$http.post('./sessionGet', {}).then(function (res) {
+        this.username = res.data;
         var post = {
             username: res.data
         }
@@ -71,6 +76,10 @@ export default {
 </script>
 
 <style scoped>
-
+.bgImg {
+    background-image: url("../assets/img/Egypt.jpg");
+    height: 100px;
+    margin-top: -40px;
+}
 </style>
 

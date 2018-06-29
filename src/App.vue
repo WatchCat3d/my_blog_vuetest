@@ -4,7 +4,7 @@
 
      </div>
      <div id="front">
-            <nav class="navbar navbar-default" role="navigation">
+            <nav class="navbar navbar-default colorWhite" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -148,11 +148,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-
+  
 }
 #head {
     height: 100px;
     background-image: url("./assets/img/Egypt.jpg");
     background-position-y: -30px;
+}
+.colorWhite {
+    background-color: white;
 }
 </style>

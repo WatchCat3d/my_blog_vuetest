@@ -2,7 +2,7 @@
     <div>
         <div id="blog_list" class="container noMarginTop">
             <div class="text-left headBackground">
-                <h1>博客中心</h1>
+                <h2>博客中心</h2>
             </div>
             <div class="list-group">
                 <div class="list-group-item hover-gray" v-for="(item, index) in blog" :key="item.id">
