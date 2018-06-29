@@ -30,7 +30,7 @@
         <div class="col-md-12 column">
           <div class="row clearfix">
             <div class="col-md-8 column">
-              <div class="carousel slide" id="carousel-664990">
+              <div class="carousel slide" id="carousel-664990" data-ride="carousel">
                 <ol class="carousel-indicators">
                   <li class="active" data-slide-to="0" data-target="#carousel-664990">
                   </li>
@@ -175,6 +175,9 @@ export default {
     return {
       msg: '主要依赖: express + vue + vue-cli + vue-resource + vue-router'
     }
+  },
+  mounted: function () {
+    $('#carousel-664990').carousel();
   },
   created: function () {
     //添加创始人

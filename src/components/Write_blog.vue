@@ -105,11 +105,17 @@ export default {
     background-color: white;
   }
   .bgImg {
-      background-image: url("../assets/img/book.png");
-      background-repeat: no-repeat;
-      margin-top: -20px;
-      background-size: 100%;
-      padding-top: 0px;
+        background-image: url("../assets/img/book.png");
+        height: 110%;
+        width: 100%;
+        position: absolute;
+        margin-top: -22px;
+        padding-top: 50px;
+        background-size: 100% 100%; 
+        background-attachment: scroll;
+        background-repeat: no-repeat;
+        background-color: #E8EBD6;
+      
   }
   .buttonWidth {
       width: 100px;
