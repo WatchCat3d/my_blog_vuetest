@@ -90,5 +90,8 @@ export default {
     padding-left: 20px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+#content {
+    margin-left: -15px;
+}
 </style>
 

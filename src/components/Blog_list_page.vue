@@ -145,14 +145,13 @@ export default {
                 }
                 this.$http.post('./blog_delete', post).then(function (res) {
                     var post2 = {
-                        page: this.active_page,
-                        writer: this.username
+                        page: this.active_page
                     }
                     this.$http.post('./blog_list', post2).then(function (res) {
                         this.blog = res.data;
                         this.blog = this.blog.reverse();
                     })
-                    this.$http.post('./blog_count',{writer: this.username}).then(function (res) {
+                    this.$http.post('./blog_count',{}).then(function (res) {
                         this.number_of_page = res.data.page;
                         this.number_of_page = parseInt(this.number_of_page / 10) + 1;
                     })
@@ -275,9 +274,12 @@ export default {
     .headBackground {
         background-image: url('../assets/img/bookAndPen.jpg');
         height: 200px;
+        width: 1140px;
         background-size: 100%;
         background-position-y: -400px;
         color: white;
+        background-repeat: no-repeat;
+        background-attachment: initial;
     }
     .noMarginTop {
         margin-top: -40px;

@@ -1,16 +1,45 @@
 <template>
-  <div id="main" class="container">
-    <div id="draft_content">
-        <h1>{{draft.title}}</h1>
-        <h4>作者: {{draft.writer}} 发表于: {{draft.draft_date | standard_date}}</h4>
-        <p v-html="content"></p>
+  <div class="bgImg">
+    <div id="main" class="container">
+        <div id="draft_content">
+            <br>
+            <br>
+            <h1>{{draft.title}}</h1>
+            <br>
+            <h4>作者: {{draft.writer}} </h4>
+            <h4>发表于: {{draft.draft_date | standard_date}}</h4>
+            <br>
+            <p v-html="content"></p>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     </div>
     <br>
     <br>
     <br>
     <br>
     <br>
-
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
   </div>
 </template>
 
@@ -61,6 +90,9 @@ export default {
 </script>
 
 <style scoped>
+    #main {
+        background-color: white;
+    }
     #draft_content p {
         margin-top: 20px;
         font-size: 12pt;
@@ -68,5 +100,14 @@ export default {
     }
     #draft_content h4 {
         margin-top: 20px;
+    }
+    .bgImg {
+        background-image: url("../assets/img/flower.jpg");
+        width: 100%;
+        position: absolute;
+        margin-top: -22px;
+        padding-top: 50px;
+        background-attachment: scroll;
+        background-color: #E8EBD6;
     }
 </style>

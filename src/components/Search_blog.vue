@@ -1,5 +1,9 @@
 <template>
-    <div id="search_blog" class="container">
+    <div id="search_blog" class="container noMarginTop">
+        <div class="text-left headBackground">
+
+        </div>
+        <br>
         <div class="list-group">
             <div class="list-group-item" v-for="(item, index) in blog" :key="item.id">
                 <div class="panel-heading">
@@ -77,5 +81,18 @@ export default {
     }
     #title :hover {
         color: red;
+    }
+    .headBackground {
+        background-image: url('../assets/img/bookAndPen.jpg');
+        height: 200px;
+        width: 1140px;
+        background-size: 100%;
+        background-position-y: -400px;
+        color: white;
+        background-repeat: no-repeat;
+        background-attachment: initial;
+    }
+    .noMarginTop {
+        margin-top: -40px;
     }
 </style>

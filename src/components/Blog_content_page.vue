@@ -2,8 +2,13 @@
   <div class="bgImg">
     <div id="main" class="container">
         <div id="blog_content">
+            <br>
+            <br>
             <h1>{{blog.title}}</h1>
-            <h4>作者: {{blog.writer}} 发表于: {{blog.blog_date | standard_date}}</h4>
+            <br>
+            <h4>作者: {{blog.writer}} </h4>
+            <h4>发表于: {{blog.blog_date | standard_date}}</h4>
+            <br>
             <p v-html="content"></p>
         </div>
         <br>
@@ -56,7 +61,17 @@
                 </div>
             </li>
         </div>
+        
+        <br>
+        <br>
+        <br>
+        <br>
     </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   </div>
 </template>
 
@@ -68,11 +83,9 @@ export default {
           content: "",
           blog: {},
           comments: "",
-          gain_comments: [{
-              writer:"sss",
-              date: 15135131,
-              content:"sdfasdf"
-          }],
+          gain_comments: [
+
+          ],
           username: "",
           comment_index: "",
           is_manager: false
@@ -235,13 +248,11 @@ export default {
     }
     .bgImg {
         background-image: url("../assets/img/flower.jpg");
-        height: 100%;
         width: 100%;
         position: absolute;
         margin-top: -22px;
         padding-top: 50px;
         background-attachment: scroll;
-        background-repeat: no-repeat;
         background-color: #E8EBD6;
     }
 </style>

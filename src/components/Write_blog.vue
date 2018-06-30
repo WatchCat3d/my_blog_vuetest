@@ -106,7 +106,7 @@ export default {
   }
   .bgImg {
         background-image: url("../assets/img/book.png");
-        height: 110%;
+        height: 1100px;
         width: 100%;
         position: absolute;
         margin-top: -22px;
